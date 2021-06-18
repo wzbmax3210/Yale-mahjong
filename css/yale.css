@@ -13,4 +13,17 @@ html {
 }
 .yale-content {
   font-size: 14px;
+  background: #fff9f3;
+}
+.rank-wrapper {
+  display: flex;
+}
+.rank-name {
+  flex-grow: 1;
+}
+.rank-point {
+  flex-grow: 1;
+}
+.rank-title {
+  flex-grow: 9;
 }

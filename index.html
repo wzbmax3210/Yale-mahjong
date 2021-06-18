@@ -15,10 +15,10 @@
       <div class="content">Rank</div>
     </div>
     <div class="yale-content">
-      <div v-for="(rankPoint, rankName) in rankData" :key="`${rankPoint}_${rankName}`">
-        <span>{{rankNameMap[rankName]}}</span>
-        <span>{{rankPoint}}</span>
-        <span>{{title(rankPoint)}}</span>
+      <div v-for="(rankPoint, rankName) in rankData" :key="`${rankPoint}_${rankName}`" class="rank-wrapper">
+        <span class="rank-name">{{rankNameMap[rankName]}}</span>
+        <span class="rank-point">{{rankPoint}}</span>
+        <span class="rank-title">{{title(rankPoint)}}</span>
       </div>
     </div>
   </div>
