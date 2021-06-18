@@ -52,7 +52,15 @@ let app = new Vue({
   methods: {
     title(rankPoint) {
       switch (true) {
-        case rankPoint < 100:
+        case rankPoint < -1000:
+          return 'fish - 送神';
+        case rankPoint < -600 && rankPoint >= -1000:
+          return 'fish - 下层';
+        case rankPoint < -300 && rankPoint >= -600:
+          return 'fish - 口转脚';
+        case rankPoint < -100 && rankPoint >= -300:
+          return 'fish - 拔根';
+        case rankPoint < 100 && rankPoint >= -100:
           return '凡人';
         case rankPoint >= 100 && rankPoint < 300:
           return '筑根';
