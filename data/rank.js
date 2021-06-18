@@ -1,11 +1,11 @@
 let rankArray = [
   {
     name: '小嘎',
-    rank: -50
+    rank: -202
   },
   {
     name: '张总',
-    rank: 0
+    rank: 90
   },
   {
     name: '陈毛',
@@ -17,7 +17,7 @@ let rankArray = [
   },
   {
     name: '吴董',
-    rank: 0
+    rank: 24
   },
   {
     name: '小黑',
@@ -33,7 +33,7 @@ let rankArray = [
   },
   {
     name: '直播',
-    rank: 299
+    rank: 235
   }
 ]
 
