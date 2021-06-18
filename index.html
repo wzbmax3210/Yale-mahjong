@@ -11,18 +11,55 @@
 <div id="app">
   <div class="yale-rank">
     <div class="yale-header">
-      <div class="fav">雅乐</div>
-      <div class="content">争霸赛</div>
+      <div class="fav">Yale</div>
+      <div class="content">Rank</div>
     </div>
-    <div class="yale-content"></div>
+    <div class="yale-content">
+      <div v-for="(rankPoint, rankName) in rankData" :key="`${rankPoint}_${rankName}`">
+        <span>{{rankNameMap[rankName]}}</span>
+        <span>{{rankPoint}}</span>
+        <span>{{title(rankPoint)}}</span>
+      </div>
+    </div>
   </div>
 </div>
 </body>
-<script src="js/vue.js" async>
+<script src="js/vue.js"></script>
+<script type="module">
+console.log(1)
+import rankData from "./data/rank.js"
+console.log(rankData)
 let app = new Vue({
-  el: '#id',
+  el: '#app',
   data: {
-
+    rankNameMap: {
+      'xiaoga': '小嘎',
+      'zhangzong': '张总',
+      'chenmao': '陈毛',
+      'zhongzong': '钟总',
+      'wudong': '吴董',
+      'xiaohei': '小黑',
+      'luobo': '毒博',
+      'laizong': '赖总',
+      'max': '直播'
+    },
+    rankData: rankData
+  },
+  methods: {
+    title(rankPoint) {
+      switch (true) {
+        case rankPoint >= 0 && rankPoint < 100:
+          return '凡人';
+        case rankPoint >= 100 && rankPoint < 300:
+          return '筑根';
+        case rankPoint >= 300 && rankPoint < 600:
+          return '心转手上层';
+        case rankPoint >= 600 && rankPoint < 1000:
+          return '上层';
+        case rankPoint >= 1000:
+          return '鬼神';
+      }
+    }
   }
 })
 </script>
