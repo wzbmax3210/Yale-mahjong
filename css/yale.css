@@ -3,7 +3,7 @@ html {
 }
 
 .yale-header {
-  font-size: 16px;
+  font-size: .18rem;
   height: .95rem;
   padding: .1rem .17rem .15rem;
   margin: 0;
@@ -11,19 +11,57 @@ html {
   background: #706CAA;
   text-align: center;
 }
+
 .yale-content {
-  font-size: 14px;
+  font-size: .14rem;
+  margin: 0 .17rem;
+}
+
+.top-3-background-color {
   background: #fff9f3;
 }
+
+.top-1-color {
+  color: #FE2D46;
+}
+
+.top-2-color {
+  color: #FF7F49;
+}
+
+.top-3-color {
+  color: #FFAA3B;
+}
+
+.title-color {
+  color: #666666;
+}
+
 .rank-wrapper {
   display: flex;
+  height: .4rem;
+  line-height: .4rem;
+  border-bottom: .01rem solid #f6f3f0;
+  flex-basis: 100%;
+  text-align: center;
 }
+
+.rank-sort {
+  width: 16.67%;
+}
+
 .rank-name {
-  flex-grow: 1;
+  width: 25%;
 }
+
 .rank-point {
-  flex-grow: 1;
+  width: 33.33%;
 }
+
 .rank-title {
-  flex-grow: 9;
+  width: 25%;
+}
+
+[v-cloak] {
+  display: none;
 }

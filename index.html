@@ -11,49 +11,53 @@
 <div id="app">
   <div class="yale-rank">
     <div class="yale-header">
-      <div class="fav">Yale</div>
-      <div class="content">Rank</div>
+      <div class="fav">第一届</div>
+      <div class="content">雅乐争霸赛</div>
     </div>
-    <div class="yale-content">
-      <div v-for="(rankPoint, rankName) in rankData" :key="`${rankPoint}_${rankName}`" class="rank-wrapper">
-        <span class="rank-name">{{rankNameMap[rankName]}}</span>
-        <span class="rank-point">{{rankPoint}}</span>
-        <span class="rank-title">{{title(rankPoint)}}</span>
+    <div class="yale-content" v-cloak>
+      <div class="rank-wrapper title-color">
+        <span class="rank-sort">排名</span>
+        <span class="rank-name">参赛选手</span>
+        <span class="rank-point">雅乐积分</span>
+        <span class="rank-title">境界</span>
+      </div>
+      <div
+          v-for="(item, key) in rankData"
+          :key="`${item}_${key}`"
+          :class="{'rank-wrapper': true, 'top-3-background-color': key < 3}"
+      >
+        <span
+            :class="{'rank-sort': true, 'top-1-color': key === 0, 'top-2-color': key === 1, 'top-3-color': key === 2 }"
+        >{{ key + 1 }}</span>
+        <span class="rank-name">{{ item.name }}</span>
+        <span
+            :class="{'rank-point': true, 'top-1-color': key === 0, 'top-2-color': key === 1, 'top-3-color': key === 2 }"
+        >{{ item.rank }}</span>
+        <span class="rank-title">{{ title(item.rank) }}</span>
       </div>
     </div>
   </div>
 </div>
 </body>
-<script src="js/vue.js"></script>
+<script src="js/vue.min.js"></script>
 <script type="module">
-console.log(1)
 import rankData from "./data/rank.js"
+
 console.log(rankData)
 let app = new Vue({
   el: '#app',
   data: {
-    rankNameMap: {
-      'xiaoga': '小嘎',
-      'zhangzong': '张总',
-      'chenmao': '陈毛',
-      'zhongzong': '钟总',
-      'wudong': '吴董',
-      'xiaohei': '小黑',
-      'luobo': '毒博',
-      'laizong': '赖总',
-      'max': '直播'
-    },
-    rankData: rankData
+    rankData: rankData.sort((a, b) => b.rank - a.rank)
   },
   methods: {
     title(rankPoint) {
       switch (true) {
-        case rankPoint >= 0 && rankPoint < 100:
+        case rankPoint < 100:
           return '凡人';
         case rankPoint >= 100 && rankPoint < 300:
           return '筑根';
         case rankPoint >= 300 && rankPoint < 600:
-          return '心转手上层';
+          return '心转手';
         case rankPoint >= 600 && rankPoint < 1000:
           return '上层';
         case rankPoint >= 1000:

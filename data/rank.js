@@ -1,11 +1,40 @@
-export default {
-  xiaoga: -50,
-  zhangzong: 0,
-  chenmao: -356,
-  zhongzong: -96,
-  wudong: 0,
-  xiaohei: 0,
-  luobo: 0,
-  laizong: 0,
-  max: 299
-}
+let rankArray = [
+  {
+    name: '小嘎',
+    rank: -50
+  },
+  {
+    name: '张总',
+    rank: 0
+  },
+  {
+    name: '陈毛',
+    rank: -356
+  },
+  {
+    name: '钟总',
+    rank: -96
+  },
+  {
+    name: '吴董',
+    rank: 0
+  },
+  {
+    name: '小黑',
+    rank: 0
+  },
+  {
+    name: '罗博',
+    rank: 0
+  },
+  {
+    name: '赖总',
+    rank: 0
+  },
+  {
+    name: '直播',
+    rank: 299
+  }
+]
+
+export default rankArray
