@@ -20,6 +20,17 @@ var server = http.createServer(function(request, response){
     success: true,
     msg: ''
   }
+  let nameMap = {
+    xiaoga: '小嘎',
+    zhangzong: '张总',
+    chenmao: '陈毛',
+    zhongzong: '钟总',
+    wudong: '吴董',
+    xiaohei: '小黑',
+    luobo: '罗博',
+    laizong: '赖总',
+    zhibo: '直播',
+  }
 
   console.log('有请求发送！路径（带查询参数）为：' + pathWithQuery)
 
@@ -45,7 +56,12 @@ var server = http.createServer(function(request, response){
         const updateRankData = JSON.parse(string)
         const rankArray = JSON.parse(fs.readFileSync('./db/rank.json'))
         rankArray.map(v => {
-          let updateRank = updateRankData[v.name]
+          let updateRank = 0
+          for (let key in nameMap) {
+            if (nameMap[key] === v.name) {
+              updateRank = updateRankData[key]
+            }
+          }
           console.log(updateRank)
           if (updateRank && updateRank !== 0 && Object.prototype.toString.call(updateRank) === '[object Number]') {
             updateRank > 0 ? v.rank += updateRank : v.rank -= updateRank
