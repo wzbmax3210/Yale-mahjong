@@ -48,7 +48,6 @@ var server = http.createServer(function(request, response){
     })
     request.on('end', () => {
       const string = Buffer.concat(array).toString()
-      console.log(string)
       if (string === '{}') {
         responseJson.success = false
         responseJson.msg = 'without rank message'
@@ -62,12 +61,10 @@ var server = http.createServer(function(request, response){
               updateRank = updateRankData[key]
             }
           }
-          console.log(updateRank)
           if (updateRank && updateRank !== 0 && Object.prototype.toString.call(updateRank) === '[object Number]') {
-            updateRank > 0 ? v.rank += updateRank : v.rank -= updateRank
+            v.rank += updateRank
           }
         })
-        console.log(rankArray)
         fs.writeFileSync('./db/rank.json', JSON.stringify(rankArray))
       }
       response.write(JSON.stringify(responseJson))
