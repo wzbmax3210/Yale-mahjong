@@ -69,7 +69,7 @@ var server = http.createServer(function(request, response){
           }
         })
         fs.writeFileSync(NODE_PATH.resolve(__dirname, './rank.json'), JSON.stringify(rankArray))
-        fs.appendFileSync(NODE_PATH.resolve(__dirname, '../log/changelog.txt'), JSON.stringify(changLog))
+        fs.appendFileSync(NODE_PATH.resolve(__dirname, '../log/changelog.txt'), changLog)
       }
       response.write(JSON.stringify(responseJson))
       response.end()
