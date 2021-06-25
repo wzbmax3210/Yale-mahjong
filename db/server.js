@@ -55,7 +55,7 @@ var server = http.createServer(function(request, response){
       } else {
         const updateRankData = JSON.parse(string)
         const rankArray = JSON.parse(fs.readFileSync(NODE_PATH.resolve(__dirname, './rank.json')))
-        let changLog = fs.readFileSync(NODE_PATH.resolve(__dirname, '../log/changelog.txt'))
+        let changLog = ''
         rankArray.map(v => {
           let updateRank = 0
           for (let key in nameMap) {
@@ -65,11 +65,11 @@ var server = http.createServer(function(request, response){
           }
           if (updateRank && updateRank !== 0 && Object.prototype.toString.call(updateRank) === '[object Number]') {
             v.rank += updateRank
-            changLog += `${v.name} ${new Date().toLocaleString()} 战绩${updateRank} 总战绩${v.rank}\r\n`
+            changLog += `${v.name} ${new Date().toLocaleString()} 战绩${updateRank} 总战绩${v.rank}\n`
           }
         })
         fs.writeFileSync(NODE_PATH.resolve(__dirname, './rank.json'), JSON.stringify(rankArray))
-        fs.writeFileSync(NODE_PATH.resolve(__dirname, '../log/changelog.txt'), JSON.stringify(changLog))
+        fs.appendFileSync(NODE_PATH.resolve(__dirname, '../log/changelog.txt'), JSON.stringify(changLog))
       }
       response.write(JSON.stringify(responseJson))
       response.end()
