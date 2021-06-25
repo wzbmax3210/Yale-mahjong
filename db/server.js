@@ -37,6 +37,7 @@ var server = http.createServer(function(request, response){
     })
     request.on('end', () => {
       const string = Buffer.concat(array).toString()
+      console.log(string)
       if (string === '{}') {
         responseJson.success = false
         responseJson.msg = 'without rank message'
