@@ -72,7 +72,7 @@ $form.on('submit', (e) => {
     data: JSON.stringify({xiaoga, zhangzong, chenmao, wudong, zhongzong, xiaohei, luobo, laizong, zhibo})
   }).then((data) => {
     if (data.success) {
-      location.href = '/'
+      location.href = '/Yale-mahjong'
     } else {
       alert(data.msg)
     }
