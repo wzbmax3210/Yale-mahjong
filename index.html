@@ -54,7 +54,7 @@ let app = new Vue({
       contentType: 'text/json; charset=utf-8'
     }).then((data) => {
       if (data.success) {
-        this.rankData = data.data
+        this.rankData = data.data.sort((a, b) => b.rank - a.rank)
       } else {
         alert(data.msg)
       }

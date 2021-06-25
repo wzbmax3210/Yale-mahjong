@@ -1,0 +1,23 @@
+html {
+  font-size: 100px;
+}
+
+#updateForm {
+  font-size: .3rem;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-top: .2rem;
+  margin-left: .12rem;
+}
+
+input {
+  height: .3rem;
+  margin-left: .08rem;
+}
+
+button {
+  font-size: .3rem;
+}

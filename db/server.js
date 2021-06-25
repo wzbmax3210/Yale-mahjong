@@ -25,6 +25,7 @@ var server = http.createServer(function(request, response){
 
   if (path === '/getRank' && method === 'GET') {
     response.setHeader('Content-Type', 'text/json;charset=utf-8')
+    responseJson.msg = 'SUCCESS'
     responseJson.data = JSON.parse(fs.readFileSync('./db/rank.json'))
     response.write(JSON.stringify(responseJson))
     response.end()
@@ -44,7 +45,7 @@ var server = http.createServer(function(request, response){
         const rankArray = JSON.parse(fs.readFileSync('./db/rank.json'))
         rankArray.map(v => {
           let updateRank = updateRankData[v.name]
-          if (updateRank) {
+          if (updateRank && updateRank !== 0 && Object.prototype.toString.call(updateRank) === '[object Number]') {
             updateRank > 0 ? v.rank += updateRank : v.rank -= updateRank
           }
         })

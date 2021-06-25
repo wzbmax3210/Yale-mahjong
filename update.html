@@ -5,17 +5,49 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Update Rank</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/update.css">
 </head>
 <body>
 <form id="updateForm">
-  <div>
-    用户名<input type="text" name="user">
+  <div class="form-item">
+    <span>小嘎</span>
+    <input type="number" name="xiaoga">
   </div>
-  <div>
-    密码<input type="password" name="password">
+  <div class="form-item">
+    <span>张总</span>
+    <input type="number" name="zhangzong">
   </div>
-  <div>
-    <button type="submit">注册</button>
+  <div class="form-item">
+    <span>陈毛</span>
+    <input type="number" name="chenmao">
+  </div>
+  <div class="form-item">
+    <span>钟总</span>
+    <input type="number" name="zhongzong">
+  </div>
+  <div class="form-item">
+    <span>吴董</span>
+    <input type="number" name="wudong">
+  </div>
+  <div class="form-item">
+    <span>小黑</span>
+    <input type="number" name="xiaohei">
+  </div>
+  <div class="form-item">
+    <span>罗博</span>
+    <input type="number" name="luobo">
+  </div>
+  <div class="form-item">
+    <span>赖总</span>
+    <input type="number" name="laizong">
+  </div>
+  <div class="form-item">
+    <span>直播</span>
+    <input type="number" name="zhibo">
+  </div>
+  <div class="form-item">
+    <button type="submit">牛蛙</button>
   </div>
 </form>
 
@@ -24,17 +56,23 @@
 const $form = $('#updateForm')
 $form.on('submit', (e) => {
   e.preventDefault()
-  const user = $form.find('input[name=user]').val().trim()
-  const password = $form.find('input[name=password]').val()
+  const xiaoga = Number($form.find('input[name=xiaoga]').val())
+  const zhangzong = Number($form.find('input[name=zhangzong]').val())
+  const chenmao = Number($form.find('input[name=chenmao]').val())
+  const wudong = Number($form.find('input[name=wudong]').val())
+  const zhongzong = Number($form.find('input[name=zhongzong]').val())
+  const xiaohei = Number($form.find('input[name=xiaohei]').val())
+  const luobo = Number($form.find('input[name=luobo]').val())
+  const laizong = Number($form.find('input[name=laizong]').val())
+  const zhibo = Number($form.find('input[name=zhibo]').val())
   $.ajax({
     method: 'POST',
-    url: '/register',
+    url: '/api/update',
     contentType: 'text/json; charset=utf-8',
-    data: JSON.stringify({user, password})
+    data: JSON.stringify({xiaoga, zhangzong, chenmao, wudong, zhongzong, xiaohei, luobo, laizong, zhibo})
   }).then((data) => {
     if (data.success) {
-      alert('register success')
-      location.href = '/home.html'
+      location.href = '/'
     } else {
       alert(data.msg)
     }
