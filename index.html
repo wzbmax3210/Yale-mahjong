@@ -40,14 +40,25 @@
 </div>
 </body>
 <script src="js/vue.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script type="module">
-import rankData from "./data/rank.js"
-
-console.log(rankData)
 let app = new Vue({
   el: '#app',
   data: {
-    rankData: rankData.sort((a, b) => b.rank - a.rank)
+    rankData: []
+  },
+  created() {
+    $.ajax({
+      method: 'GET',
+      url: '/api/getRank',
+      contentType: 'text/json; charset=utf-8'
+    }).then((data) => {
+      if (data.success) {
+        this.rankData = data.data
+      } else {
+        alert(data.msg)
+      }
+    }, () => {})
   },
   methods: {
     title(rankPoint) {

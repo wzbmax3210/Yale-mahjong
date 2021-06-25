@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Update Rank</title>
+</head>
+<body>
+<form id="updateForm">
+  <div>
+    用户名<input type="text" name="user">
+  </div>
+  <div>
+    密码<input type="password" name="password">
+  </div>
+  <div>
+    <button type="submit">注册</button>
+  </div>
+</form>
+
+<script src="js/jquery.min.js"></script>
+<script>
+const $form = $('#updateForm')
+$form.on('submit', (e) => {
+  e.preventDefault()
+  const user = $form.find('input[name=user]').val().trim()
+  const password = $form.find('input[name=password]').val()
+  $.ajax({
+    method: 'POST',
+    url: '/register',
+    contentType: 'text/json; charset=utf-8',
+    data: JSON.stringify({user, password})
+  }).then((data) => {
+    if (data.success) {
+      alert('register success')
+      location.href = '/home.html'
+    } else {
+      alert(data.msg)
+    }
+  }, () => {})
+})
+</script>
+</body>
+</html>
