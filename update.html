@@ -67,7 +67,7 @@ $form.on('submit', (e) => {
   const zhibo = Number($form.find('input[name=zhibo]').val())
   $.ajax({
     method: 'POST',
-    url: '/api/update',
+    url: '/api/updateRank',
     contentType: 'text/json; charset=utf-8',
     data: JSON.stringify({xiaoga, zhangzong, chenmao, wudong, zhongzong, xiaohei, luobo, laizong, zhibo})
   }).then((data) => {
