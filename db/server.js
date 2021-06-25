@@ -46,10 +46,12 @@ var server = http.createServer(function(request, response){
         const rankArray = JSON.parse(fs.readFileSync('./db/rank.json'))
         rankArray.map(v => {
           let updateRank = updateRankData[v.name]
+          console.log(updateRank)
           if (updateRank && updateRank !== 0 && Object.prototype.toString.call(updateRank) === '[object Number]') {
             updateRank > 0 ? v.rank += updateRank : v.rank -= updateRank
           }
         })
+        console.log(rankArray)
         fs.writeFileSync('./db/rank.json', JSON.stringify(rankArray))
       }
       response.write(JSON.stringify(responseJson))
