@@ -30,8 +30,7 @@ var server = http.createServer(function(request, response){
       response.write(responseJson)
       response.end()
     })
-  }
-  if (path === '/updateRank' && method === 'POST') {
+  } else if (path === '/updateRank' && method === 'POST') {
     const array = []
     response.setHeader('Content-Type', 'text/json;charset=utf-8')
     request.on('data', chunk => {
