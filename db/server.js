@@ -26,7 +26,7 @@ var server = http.createServer(function(request, response){
   if (path === '/getRank' && method === 'GET') {
     response.setHeader('Content-Type', 'text/json;charset=utf-8')
     responseJson.data = JSON.parse(fs.readFileSync('./db/rank.json'))
-    response.write(responseJson)
+    response.write(JSON.stringify(responseJson))
     response.end()
   } else if (path === '/updateRank' && method === 'POST') {
     const array = []
