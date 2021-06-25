@@ -2,6 +2,7 @@ var http = require('http')
 var url = require('url')
 var port = process.argv[2]
 var fs = require('fs')
+const path = require('path')
 
 if(!port){
   console.log('请指定端口号好不啦？\nnode server.js 8888 这样不会吗？')
@@ -37,7 +38,7 @@ var server = http.createServer(function(request, response){
   if (path === '/getRank' && method === 'GET') {
     response.setHeader('Content-Type', 'text/json;charset=utf-8')
     responseJson.msg = 'SUCCESS'
-    responseJson.data = JSON.parse(fs.readFileSync('./db/rank.json'))
+    responseJson.data = JSON.parse(fs.readFileSync(path.resolve(__dirname, './rank.json')))
     response.write(JSON.stringify(responseJson))
     response.end()
   } else if (path === '/updateRank' && method === 'POST') {
@@ -53,7 +54,8 @@ var server = http.createServer(function(request, response){
         responseJson.msg = 'without rank message'
       } else {
         const updateRankData = JSON.parse(string)
-        const rankArray = JSON.parse(fs.readFileSync('./db/rank.json'))
+        const rankArray = JSON.parse(fs.readFileSync(path.resolve(__dirname, './rank.json')))
+        let changLog = fs.readFileSync(path.resolve(__dirname, '../log/changelog.txt'))
         rankArray.map(v => {
           let updateRank = 0
           for (let key in nameMap) {
@@ -63,9 +65,11 @@ var server = http.createServer(function(request, response){
           }
           if (updateRank && updateRank !== 0 && Object.prototype.toString.call(updateRank) === '[object Number]') {
             v.rank += updateRank
+            changLog += `${v.name} ${new Date().toLocaleString()} 战绩${updateRank} 总战绩${v.rank}\n`
           }
         })
-        fs.writeFileSync('./db/rank.json', JSON.stringify(rankArray))
+        fs.writeFileSync(path.resolve(__dirname, './rank.json'), JSON.stringify(rankArray))
+        fs.writeFileSync(path.resolve(__dirname, '../log/changelog.txt'), JSON.stringify(changLog))
       }
       response.write(JSON.stringify(responseJson))
       response.end()
