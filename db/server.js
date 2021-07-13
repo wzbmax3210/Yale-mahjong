@@ -63,8 +63,9 @@ var server = http.createServer(function(request, response){
               updateRank = updateRankData[key]
             }
           }
-          if (updateRank && updateRank !== 0 && Object.prototype.toString.call(updateRank) === '[object Number]') {
-            v.rank += updateRank
+          if (updateRank !== '' && !isNaN(Number(updateRank)) && Object.prototype.toString.call(updateRank) === '[object Number]') {
+            v.lastRank = Number(updateRank)
+            v.rank += Number(updateRank)
             changLog += `${v.name} ${new Date().toLocaleString()} 战绩${updateRank} 总战绩${v.rank}\n`
           }
         })

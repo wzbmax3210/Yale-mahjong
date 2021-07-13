@@ -19,6 +19,7 @@
         <span class="rank-sort">排名</span>
         <span class="rank-name">参赛选手</span>
         <span class="rank-point">雅乐积分</span>
+        <span class="last-rank">最近战绩</span>
         <span class="rank-title">境界</span>
       </div>
       <div
@@ -33,6 +34,7 @@
         <span
             :class="{'rank-point': true, 'top-1-color': key === 0, 'top-2-color': key === 1, 'top-3-color': key === 2 }"
         >{{ item.rank }}</span>
+        <span class="last-rank">{{ title(item.lastRank) }}</span>
         <span class="rank-title">{{ title(item.rank) }}</span>
       </div>
     </div>

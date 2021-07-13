@@ -56,15 +56,15 @@
 const $form = $('#updateForm')
 $form.on('submit', (e) => {
   e.preventDefault()
-  const xiaoga = Number($form.find('input[name=xiaoga]').val())
-  const zhangzong = Number($form.find('input[name=zhangzong]').val())
-  const chenmao = Number($form.find('input[name=chenmao]').val())
-  const wudong = Number($form.find('input[name=wudong]').val())
-  const zhongzong = Number($form.find('input[name=zhongzong]').val())
-  const xiaohei = Number($form.find('input[name=xiaohei]').val())
-  const luobo = Number($form.find('input[name=luobo]').val())
-  const laizong = Number($form.find('input[name=laizong]').val())
-  const zhibo = Number($form.find('input[name=zhibo]').val())
+  const xiaoga = $form.find('input[name=xiaoga]').val()
+  const zhangzong = $form.find('input[name=zhangzong]').val()
+  const chenmao = $form.find('input[name=chenmao]').val()
+  const wudong = $form.find('input[name=wudong]').val()
+  const zhongzong = $form.find('input[name=zhongzong]').val()
+  const xiaohei = $form.find('input[name=xiaohei]').val()
+  const luobo = $form.find('input[name=luobo]').val()
+  const laizong = $form.find('input[name=laizong]').val()
+  const zhibo = $form.find('input[name=zhibo]').val()
   $.ajax({
     method: 'POST',
     url: '/api/updateRank',

@@ -1,38 +1,47 @@
 [
   {
     "name": "小嘎",
-    "rank": -202
+    "rank": -406,
+    "lastRank": 0
   },
   {
     "name": "张总",
-    "rank": 90
+    "rank": -576,
+    "lastRank": -480
   },
   {
     "name": "陈毛",
-    "rank": -356
+    "rank": -457,
+    "lastRank": -100
   },
   {
     "name": "钟总",
-    "rank": -96
+    "rank": 94,
+    "lastRank": 94
   },
   {
     "name": "吴董",
-    "rank": 24
+    "rank": 746,
+    "lastRank": 96
   },
   {
     "name": "小黑",
-    "rank": 0
+    "rank": 0,
+    "lastRank": 0
   },
   {
     "name": "罗博",
-    "rank": 0
+    "rank": -148,
+    "lastRank": -176
   },
   {
     "name": "赖总",
-    "rank": 0
+    "rank": 0,
+    "lastRank": 0
   },
   {
     "name": "直播",
-    "rank": 235
+    "rank": 176,
+    "lastRank": -65
   }
 ]

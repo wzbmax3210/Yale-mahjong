@@ -47,15 +47,19 @@ html {
 }
 
 .rank-sort {
-  width: 16.67%;
+  width: 10%;
 }
 
 .rank-name {
-  width: 25%;
+  width: 20%;
 }
 
 .rank-point {
-  width: 33.33%;
+  width: 23%;
+}
+
+.last-rank {
+  width: 22%;
 }
 
 .rank-title {
