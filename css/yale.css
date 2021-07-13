@@ -62,6 +62,13 @@ html {
   width: 22%;
 }
 
+.last-rank-up {
+  color: #F73131;
+}
+.last-rank-down {
+  color: #0EBE98;
+}
+
 .rank-title {
   width: 25%;
 }

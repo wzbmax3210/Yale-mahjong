@@ -34,7 +34,7 @@
         <span
             :class="{'rank-point': true, 'top-1-color': key === 0, 'top-2-color': key === 1, 'top-3-color': key === 2 }"
         >{{ item.rank }}</span>
-        <span class="last-rank">{{ item.lastRank }}</span>
+        <span :class="{'last-rank': true, 'last-rank-up': item.lastRank > 0, 'last-rank-down': item.lastRank < 0}">{{ item.lastRank }}</span>
         <span class="rank-title">{{ title(item.rank) }}</span>
       </div>
     </div>
