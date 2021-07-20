@@ -17,6 +17,27 @@ html {
   margin: 0 .17rem;
 }
 
+.match {
+  margin-top: .12rem;
+}
+.match-date {
+  height: .36rem;
+  line-height: .36rem;
+  font-size: .12rem;
+  padding: 0 .17rem;
+  background-color: #f5f5f5;
+}
+.match-detail-wrapper {
+  height: .85rem;
+  font-size: .12rem;
+  padding: 0 .17rem;
+}
+.match-detail {
+  display: inline-block;
+  line-height: .4rem;
+  width: 50%;
+}
+
 .top-3-background-color {
   background: #fff9f3;
 }

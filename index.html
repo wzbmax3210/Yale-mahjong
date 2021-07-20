@@ -38,6 +38,18 @@
         <span class="rank-title">{{ title(item.rank) }}</span>
       </div>
     </div>
+    <div class="match" v-cloak>
+      <div class="match-list" v-for="(item, key) in matchData" :key="`${item}_${key}`">
+        <div class="match-date">
+          {{ item.date }}
+        </div>
+        <div class="match-detail-wrapper">
+          <span class="match-detail" v-for="(point, name) in item.detail" :key="`${point}_${name}`">
+            {{ `${name}: ${point}` }}
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </body>
@@ -47,7 +59,8 @@
 let app = new Vue({
   el: '#app',
   data: {
-    rankData: []
+    rankData: [],
+    matchData: []
   },
   created() {
     $.ajax({
@@ -56,7 +69,8 @@ let app = new Vue({
       contentType: 'text/json; charset=utf-8'
     }).then((data) => {
       if (data.success) {
-        this.rankData = data.data.sort((a, b) => b.rank - a.rank)
+        this.rankData = data.data.rank.sort((a, b) => b.rank - a.rank)
+        this.matchData = data.data.match
       } else {
         alert(data.msg)
       }

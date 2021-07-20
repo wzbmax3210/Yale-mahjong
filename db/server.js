@@ -38,7 +38,9 @@ var server = http.createServer(function(request, response){
   if (path === '/getRank' && method === 'GET') {
     response.setHeader('Content-Type', 'text/json;charset=utf-8')
     responseJson.msg = 'SUCCESS'
-    responseJson.data = JSON.parse(fs.readFileSync(NODE_PATH.resolve(__dirname, './rank.json')))
+    responseJson.data = {}
+    responseJson.data.rank = JSON.parse(fs.readFileSync(NODE_PATH.resolve(__dirname, './rank.json')))
+    responseJson.data.match = JSON.parse(fs.readFileSync(NODE_PATH.resolve(__dirname, './match.json')))
     response.write(JSON.stringify(responseJson))
     response.end()
   } else if (path === '/updateRank' && method === 'POST') {
@@ -55,7 +57,21 @@ var server = http.createServer(function(request, response){
       } else {
         const updateRankData = JSON.parse(string)
         const rankArray = JSON.parse(fs.readFileSync(NODE_PATH.resolve(__dirname, './rank.json')))
+        const matchArray = JSON.parse(fs.readFileSync(NODE_PATH.resolve(__dirname, './match.json')))
+        const date = new Date().toLocaleString()
         let changLog = ''
+        let unshiftMatch = {
+          date: date,
+          detail: {}
+        }
+
+        for (let key in updateRankData) {
+          if (updateRankData.hasOwnProperty(key) && updateRankData[key] !== '') {
+            unshiftMatch.detail[nameMap[key]] = updateRankData[key]
+          }
+        }
+        matchArray.unshift(unshiftMatch)
+
         rankArray.map(v => {
           let updateRank = 0
           for (let key in nameMap) {
@@ -66,10 +82,11 @@ var server = http.createServer(function(request, response){
           if (updateRank !== '' && !isNaN(Number(updateRank))) {
             v.lastRank = Number(updateRank)
             v.rank += Number(updateRank)
-            changLog += `${v.name} ${new Date().toLocaleString()} 战绩${updateRank} 总战绩${v.rank}\n`
+            changLog += `${v.name} ${date} 战绩${updateRank} 总战绩${v.rank}\n`
           }
         })
         fs.writeFileSync(NODE_PATH.resolve(__dirname, './rank.json'), JSON.stringify(rankArray))
+        fs.writeFileSync(NODE_PATH.resolve(__dirname, './match.json'), JSON.stringify(matchArray))
         fs.appendFileSync(NODE_PATH.resolve(__dirname, '../log/changelog.txt'), changLog)
       }
       response.write(JSON.stringify(responseJson))

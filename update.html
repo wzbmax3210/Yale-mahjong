@@ -10,6 +10,10 @@
 </head>
 <body>
 <form id="updateForm">
+  <div class="form-item" style="font-size: .2rem">
+    <label><input type="radio" name="type" value="normal" checked>&nbsp;正常</label>
+    <label><input type="radio" name="type" value="revise">&nbsp;修正</label>
+  </div>
   <div class="form-item">
     <span>小嘎</span>
     <input type="number" pattern="[0-9]*" name="xiaoga">
@@ -56,6 +60,7 @@
 const $form = $('#updateForm')
 $form.on('submit', (e) => {
   e.preventDefault()
+  const type = $form.find('input[name=type]:checked').val()
   const xiaoga = $form.find('input[name=xiaoga]').val()
   const zhangzong = $form.find('input[name=zhangzong]').val()
   const chenmao = $form.find('input[name=chenmao]').val()
@@ -65,18 +70,23 @@ $form.on('submit', (e) => {
   const luobo = $form.find('input[name=luobo]').val()
   const laizong = $form.find('input[name=laizong]').val()
   const zhibo = $form.find('input[name=zhibo]').val()
-  $.ajax({
-    method: 'POST',
-    url: '/api/updateRank',
-    contentType: 'text/json; charset=utf-8',
-    data: JSON.stringify({xiaoga, zhangzong, chenmao, wudong, zhongzong, xiaohei, luobo, laizong, zhibo})
-  }).then((data) => {
-    if (data.success) {
-      location.href = '/Yale-mahjong'
-    } else {
-      alert(data.msg)
-    }
-  }, () => {})
+  const valueArray = [xiaoga, zhangzong, chenmao, wudong, zhongzong, xiaohei, luobo, laizong, zhibo].filter(v => v !== '')
+  if (type === 'normal' && valueArray.length !== 4) {
+    alert('normal模式请输入四个人的战绩')
+  } else {
+    $.ajax({
+      method: 'POST',
+      url: '/api/updateRank',
+      contentType: 'text/json; charset=utf-8',
+      data: JSON.stringify({xiaoga, zhangzong, chenmao, wudong, zhongzong, xiaohei, luobo, laizong, zhibo})
+    }).then((data) => {
+      if (data.success) {
+        location.href = '/Yale-mahjong'
+      } else {
+        alert(data.msg)
+      }
+    }, () => {})
+  }
 })
 </script>
 </body>
