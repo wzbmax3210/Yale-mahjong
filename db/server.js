@@ -85,6 +85,7 @@ var server = http.createServer(function(request, response){
             changLog += `${v.name} ${date} 战绩${updateRank} 总战绩${v.rank}\n`
           }
         })
+        changLog += `--------------------------------------------------\n`
         fs.writeFileSync(NODE_PATH.resolve(__dirname, './rank.json'), JSON.stringify(rankArray))
         fs.writeFileSync(NODE_PATH.resolve(__dirname, './match.json'), JSON.stringify(matchArray))
         fs.appendFileSync(NODE_PATH.resolve(__dirname, '../log/changelog.txt'), changLog)

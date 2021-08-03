@@ -44,8 +44,8 @@
           {{ item.date }}
         </div>
         <div class="match-detail-wrapper">
-          <div class="match-detail" v-for="(point, name) in item.detail" :key="`${point}_${name}`">
-            <img class="crown-img" v-if="point === Object.values(item.detail).sort((a, b) => b - a)[0]" src="./crown.png" height="16" width="16" alt="no.1">
+          <div class="match-detail" v-for="(point, name, index) in item.detail" :key="`${point}_${name}`">
+            <img class="crown-img" v-if="point === Object.values(item.detail).sort((a, b) => b - a)[0] && index === 4" src="./crown.png" height="16" width="16" alt="no.1">
             <span>{{ name }}</span> : <span :class="{'last-rank-up': point > 0, 'last-rank-down': point < 0}">{{ point }}</span>
           </div>
         </div>
