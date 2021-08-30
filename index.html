@@ -24,7 +24,7 @@
       </div>
       <div
           v-for="(item, key) in rankData"
-          :key="`${item}_${key}`"
+          :key="`${item.name}_${key}`"
           :class="{'rank-wrapper': true, 'top-3-background-color': key < 3}"
       >
         <span
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="match" v-cloak>
-      <div class="match-list" v-for="(item, key) in matchData" :key="`${item}_${key}`">
+      <div class="match-list" v-for="(item, key) in matchData" :key="`${item.date}_${key}`">
         <div class="match-date">
           {{ item.date }}
         </div>
